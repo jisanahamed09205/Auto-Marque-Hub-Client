@@ -14,6 +14,11 @@ const Banner = () => {
                          data-aos-offset="500"
                          data-aos-duration="500"
                     className="mb-5">Welcome to AutoMarqueHub, where passion meets precision. Immerse yourself in a world of automotive excellence, from iconic classics to cutting-edge marvels. Discover in-depth guides, expert reviews, and a vibrant community of fellow enthusiasts. Let's embark on a journey where every drive is an experience in perfection.</p>
+                    <br />
+                    <br />
+                    <div className=" text-center">
+                        <a href="#brandSection"><button  className="btn btn-primary">Our Brands</button></a>
+                    </div>
                 </div>
             </div>
         </div>
