@@ -4,9 +4,8 @@ const Footer = () => {
     return (
       <footer className="footer p-10 bg-neutral text-neutral-content">
         <aside>
-          {/* <img width="200" height="200" src={logo} alt="" /> */}
           <a className="flex items-center font-bold normal-case text-2xl"><img width="200" height="200" src={logo} alt="" />Hub</a>
-          <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
+          <p>AutoMarqueHub Ltd.<br />Providing reliable tech since 1992</p>
         </aside>
         <nav>
           <header className="footer-title">Social</header>
