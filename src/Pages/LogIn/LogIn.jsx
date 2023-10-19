@@ -1,20 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const LogIn = () => {
 
-    const {login} = useContext(AuthContext);
+    const {login,signInWithGoogle} = useContext(AuthContext);
+
+    const location = useLocation();
+
+    const navigate = useNavigate();
 
     const handleLogin = e =>{
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         // console.log(email,password);
+
+        //login user
         login(email,password)
         .then(result=>{
-            console.log(result);
+            console.log(result.user);
+            //
+
+
+            navigate(location?.state ? location.state : '/');
+
+        })
+
+        .catch(error=>{
+            console.error(error);
+            //swal
+        })
+    }
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+        .then(result=>{
+            console.log(result.user);
         })
         .catch(error=>{
             console.error(error)
@@ -50,7 +72,7 @@ const LogIn = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                             <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-                                Don't have an account?
+                                Don not have an account?
                                 <Link
                                     to='/register'
                                     className="font-medium text-pink-500 transition-colors hover:text-blue-700"
@@ -60,6 +82,7 @@ const LogIn = () => {
                                 </Link>
                             </p>
                         </form>
+                        <p className="text-center"><button onClick={handleGoogleSignIn} className='btn btn-secondary w-80 mb-5'>Sign in With Google</button></p>
                     </div>
                 </div>
             </div>

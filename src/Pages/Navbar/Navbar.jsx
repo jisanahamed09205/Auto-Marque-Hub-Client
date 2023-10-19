@@ -45,6 +45,16 @@ const Navbar = () => {
                 My Cart
             </NavLink>
         </li>
+        <li>
+            <NavLink
+                to="/login"
+                className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-[#3a5ae6] underline hover:text-red-800" : ""
+                }
+            >
+                Login
+            </NavLink>
+        </li>
     </>
 
     return (
@@ -66,10 +76,10 @@ const Navbar = () => {
                     {navLinks}
                 </ul>
             </div>
-            <div className="navbar-end">
+            {/* <div className="navbar-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                    <img src={defaultUser} />
+                        <img src={defaultUser} />
                     </div>
                 </label>
                 {
@@ -83,7 +93,27 @@ const Navbar = () => {
                             <button className="btn normal-case">Login</button>
                         </Link>
                 }
-            </div>
+            </div> */}
+            {
+                user ?
+                    <div className="navbar-end gap-5">
+                        <div className="flex flex-col items-center mx-3">
+                            <img className="w-[50px] rounded-full" src={user.photoURL} alt="" />
+                            <p className=" font-medium text-center">{user.displayName}</p>
+                        </div>
+                        <button onClick={handleSignOut} className="btn normal-case">SignOut</button>
+                    </div> : 
+                        <div className="navbar-end lg:gap-5 md:gap-3 gap-1">
+                            <div className="flex flex-col items-center">
+                                <div className="w-10 rounded-full">
+                                    <img src={defaultUser} />
+                                </div>
+                            </div>
+                            <Link to='/login'>
+                                <button className="btn normal-case">Login</button>
+                            </Link>
+                        </div>
+            }
         </div>
     );
 };

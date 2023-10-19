@@ -1,26 +1,86 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import swal from "sweetalert";
+
+
 
 const Register = () => {
 
-    const {createUser} = useContext(AuthContext)
+    const {createUser,signInWithGoogle,update} = useContext(AuthContext)
+
+    const location = useLocation();
+
+    const navigate = useNavigate();
+
+    const [signUpError, setSignUpError] = useState('');
+
+    const [signUpSuccess,setSignUpSuccess] = useState('');
 
     const handleRegister = e =>{
         e.preventDefault();
         const name = e.target.name.value;
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const accepted = e.target.terms.checked;
         // console.log(name,email,password,accepted);
+        // console.log(photo);
+
+        //reset error
+        setSignUpError('');
+        setSignUpSuccess('');
+
+        if(password.length < 6){
+            swal("Error!", "Password Should be at last 6 characters or longer !", "warning")
+            return ;
+        }
+        else if(!/[A-Z]/.test(password)){
+            swal("Error!", "Your password should have at least one upper case characters or longer!", "warning")
+            return;
+        }
+        else if(!/^(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?/_₹]).*$/.test(password)){
+            swal("Error!", "Your password should at least one special characters or longer!", "warning")
+            return;
+        }
+        else if(!accepted){
+            swal("Error!", "Please Accept our terms and conditions!", "warning")
+            return ;
+        }
 
         //create user
-        createUser(name,email,password)
+        createUser(email,password)
         .then(result =>{
             console.log(result.user);
+            swal("Successful!", "Your Registration Success!", "success")
+
+            update(name,photo)
+            .then()
+            .catch()
+            {location.state ? navigate(location.state) : navigate('/')}
+            // location.reload()
+            // {location.state ? navigate(location.state) : navigate('/')}
+
+            //update profile
+            // updateProfile(result.user, {
+            //     displayName: name,
+            //     photoURL: "https://example.com/jane-q-user/profile.jpg"
+            // })
+            // .then( () =>console.log('profile updated'))
+            // .catch()
         })
         .catch(error =>{
+            console.error(error);
+            swal("Error!", "Email Already in use!", "warning");
+        })
+    }
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+        .then(result=>{
+            console.log(result.user);
+        })
+        .catch(error=>{
             console.error(error)
         })
     }
@@ -47,6 +107,17 @@ const Register = () => {
                                 />
                                 <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                                     Name
+                                </label>
+                            </div>
+                            <div className="relative h-11 w-full min-w-[200px]">
+                                <input
+                                    type="text"
+                                    name="photo"
+                                    className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                    placeholder=""
+                                />
+                                <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                    PhotoURL
                                 </label>
                             </div>
                             <div className="relative h-11 w-full min-w-[200px]">
@@ -141,7 +212,9 @@ const Register = () => {
                             </Link>
                         </p>
                     </form>
-                    <p><button className='btn btn-primary w-full'>Create Account With Google</button></p>
+                    <p><button
+                    onClick={handleGoogleSignIn}
+                    className='btn btn-primary w-full'>Create Account With Google</button></p>
                     {/* {
                         signupError && swal("Error!", "Email Already in use!", "warning")
                     }
