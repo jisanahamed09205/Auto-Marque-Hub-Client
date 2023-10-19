@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import swal from "sweetalert";
 
 const LogIn = () => {
 
@@ -21,7 +22,7 @@ const LogIn = () => {
         login(email,password)
         .then(result=>{
             console.log(result.user);
-            //
+            swal("Successful!", "Your Login Success!", "success")
 
 
             navigate(location?.state ? location.state : '/');
@@ -30,7 +31,7 @@ const LogIn = () => {
 
         .catch(error=>{
             console.error(error);
-            //swal
+            swal("Invalid!", "Check Your Email or Password!", "warning");
         })
     }
     const handleGoogleSignIn = () =>{

@@ -59,8 +59,8 @@ const Register = () => {
             .then()
             .catch()
             {location.state ? navigate(location.state) : navigate('/')}
-            // location.reload()
-            // {location.state ? navigate(location.state) : navigate('/')}
+            location.reload()
+            {location.state ? navigate(location.state) : navigate('/')}
 
             //update profile
             // updateProfile(result.user, {
@@ -88,7 +88,7 @@ const Register = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className=' flex justify-center items-center py-10' style={{backgroundImage: 'url(/bg-register.svg)'}}>
+            <div className=' flex justify-center items-center py-5' style={{backgroundImage: 'url(/bg-register.svg)'}}>
                 <div className="text-white relative flex flex-col rounded-xl bg-transparent bg-clip-border shadow-none">
                     <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-white">
                         Register
@@ -97,7 +97,7 @@ const Register = () => {
                         Enter your details to register.
                     </p>
                     <form onSubmit={handleRegister} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-                        <div className="mb-4 flex flex-col gap-6">
+                        <div className="mb-2 flex flex-col gap-6">
                             <div className="relative h-11 w-full min-w-[200px]">
                                 <input
                                     type="text"
@@ -195,13 +195,13 @@ const Register = () => {
                             <input type="checkbox" />
                         </div> */}
                         <button
-                            className="mt-6 block w-full select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            className="mt-2 block w-full select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             // type="button"
                             data-ripple-light="true"
                         >
                             Register
                         </button>
-                        <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed antialiased">
+                        <p className="mt-2 block text-center font-sans text-base font-normal leading-relaxed antialiased">
                             Already have an account?
                             <Link
                                 to='/login'
