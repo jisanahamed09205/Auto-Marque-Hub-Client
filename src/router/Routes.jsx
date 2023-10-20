@@ -8,6 +8,7 @@ import AddProduct from '../Pages/AddProduct/AddProduct';
 import PrivateRoute from './PrivateRoute';
 import MyCart from '../Pages/MyCart/MyCart';
 import Update from '../Pages/Update/Update';
+import ProductPage from '../Pages/Home/ProductPage';
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
       children: [
         {
             path: '/',
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: () => fetch('http://localhost:7000/brands')
         },
         {
           path: '/login',
@@ -38,6 +40,11 @@ const router = createBrowserRouter([
         {
           path: '/update',
           element: <PrivateRoute><Update></Update></PrivateRoute>
+        },
+        {
+          path: '/productPage',
+          element: <ProductPage></ProductPage>,
+          loader: () => fetch('http://localhost:7000/products')
         }
       ]
     },

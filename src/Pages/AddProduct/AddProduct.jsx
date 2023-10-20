@@ -86,7 +86,7 @@ const AddProduct = () => {
                     <div className="md:flex gap-5">
                         <div className="form-control md:w-1/2">
                             <label className="label">
-                                <span className="label-text">Type</span>
+                                <span className="label-text">Category</span>
                             </label>
                             <label className="input-group">
                                 <input type="text" name="type" placeholder="Type" className="input input-bordered w-full" />
