@@ -21,7 +21,7 @@ const AddProduct = () => {
         // console.log(newProduct);
 
         // send data to the server
-        fetch('http://localhost:7000/products',{
+        fetch('https://auto-marque-hub-server.vercel.app/products',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

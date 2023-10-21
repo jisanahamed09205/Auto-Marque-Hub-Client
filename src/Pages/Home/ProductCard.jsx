@@ -23,7 +23,9 @@ const ProductCard = ({product}) => {
                 </div>
                 <p>{shortDescrib}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary btn-sm">Details</button>
+                    <Link to={`/details/${_id}`}>
+                        <button className="btn btn-primary btn-sm">Details</button>
+                    </Link>
                 </div>
                 <Link to={`/update/${_id}`}>
                     <button className="btn btn-info w-full">Update</button>

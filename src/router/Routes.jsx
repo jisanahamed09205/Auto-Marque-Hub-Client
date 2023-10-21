@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute';
 import MyCart from '../Pages/MyCart/MyCart';
 import Update from '../Pages/Update/Update';
 import ProductPage from '../Pages/Home/ProductPage';
+import ViewDetails from '../Pages/ViewDetails/ViewDetails';
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         {
             path: '/',
             element: <Home></Home>,
-            loader: () => fetch('http://localhost:7000/brands')
+            loader: () => fetch('https://auto-marque-hub-server.vercel.app/brands')
         },
         {
           path: '/login',
@@ -40,13 +41,18 @@ const router = createBrowserRouter([
         {
           path: '/update/:id',
           element: <PrivateRoute><Update></Update></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:7000/productsKaku/${params.id}`)
+          loader: ({params}) => fetch(`https://auto-marque-hub-server.vercel.app/productsKaku/${params.id}`)
         },
         {
           path: '/productPage/:name',
           element: <ProductPage></ProductPage>,
-          loader: ({params}) => fetch(`http://localhost:7000/products/${params.name}`)
+          loader: ({params}) => fetch(`https://auto-marque-hub-server.vercel.app/products/${params.name}`)
         },
+        {
+          path: '/details/:id',
+          element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
+          loader: ({params}) => fetch(`https://auto-marque-hub-server.vercel.app/productDetails/${params.id}`)
+        }
       ]
     },
   ]);

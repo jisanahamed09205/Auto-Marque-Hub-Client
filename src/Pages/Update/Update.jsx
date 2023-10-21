@@ -26,7 +26,7 @@ const Update = () => {
         // console.log(newProduct);
 
         // send data to the server
-        fetch(`http://localhost:7000/productsKakus/${_id}`,{
+        fetch(`https://auto-marque-hub-server.vercel.app/productsKakus/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
