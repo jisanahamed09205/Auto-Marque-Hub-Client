@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext);
 
     const location = useLocation();
-    console.log(location.pathname);
+    // console.log(location.pathname);
 
     const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
 

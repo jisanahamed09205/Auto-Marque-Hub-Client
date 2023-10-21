@@ -38,14 +38,15 @@ const router = createBrowserRouter([
           element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
         },
         {
-          path: '/update',
-          element: <PrivateRoute><Update></Update></PrivateRoute>
+          path: '/update/:id',
+          element: <PrivateRoute><Update></Update></PrivateRoute>,
+          loader: ({params}) => fetch(`http://localhost:7000/productsKaku/${params.id}`)
         },
         {
           path: '/productPage/:name',
           element: <ProductPage></ProductPage>,
           loader: ({params}) => fetch(`http://localhost:7000/products/${params.name}`)
-        }
+        },
       ]
     },
   ]);

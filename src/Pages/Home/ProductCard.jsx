@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 
 const ProductCard = ({product}) => {
-    console.log(product);
-    const {name,brandName,price,rating,type,shortDescrib,image} = product;
+    // console.log(product);
+    const {_id,name,brandName,price,rating,type,shortDescrib,image} = product;
     return (
-        
+
         <div className="card card-compact bg-base-100 shadow-xl mx-auto">
             <figure><img src={image} alt="Shoes" /></figure>
             <div className="card-body">
@@ -24,7 +25,9 @@ const ProductCard = ({product}) => {
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary btn-sm">Details</button>
                 </div>
-                <button className="btn btn-info">Update</button>
+                <Link to={`/update/${_id}`}>
+                    <button className="btn btn-info w-full">Update</button>
+                </Link>
             </div>
         </div>
     );

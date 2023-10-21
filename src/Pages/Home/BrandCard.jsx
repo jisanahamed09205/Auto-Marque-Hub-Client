@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const BrandCard = ({ brand }) => {
 
     const {brandImg,brandName} = brand;
-    console.log(brandName);
+    // console.log(brandName);
 
     return (
         <Link to={`/productPage/${brandName}`}>
