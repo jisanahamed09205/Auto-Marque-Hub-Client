@@ -27,7 +27,7 @@ const LatestCustomer = () => {
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        $320
+                                        $325480
                                     </div>
                                 </div>
                             </li>
@@ -45,7 +45,7 @@ const LatestCustomer = () => {
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        $3467
+                                        $3425667
                                     </div>
                                 </div>
                             </li>
@@ -63,7 +63,7 @@ const LatestCustomer = () => {
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        $67
+                                        $65477
                                     </div>
                                 </div>
                             </li>
@@ -81,7 +81,7 @@ const LatestCustomer = () => {
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        $367
+                                        $366577
                                     </div>
                                 </div>
                             </li>
@@ -99,7 +99,7 @@ const LatestCustomer = () => {
                                         </p>
                                     </div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                        $2367
+                                        $223367
                                     </div>
                                 </div>
                             </li>
